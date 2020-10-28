@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bensound-tenderness.ogg-b52241ad8990a7a354ffd1e72bab2558.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/bensound-tenderness.ogg"
+dest_files=[ "res://.import/bensound-tenderness.ogg-b52241ad8990a7a354ffd1e72bab2558.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/LoseScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/BubbleBobble-MVpLp.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="LoseScreen" type="MarginContainer"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 433.0
+margin_top = 274.0
+margin_right = 846.0
+margin_bottom = 445.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 413.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.843137, 0, 1 )
+text = "You Crashed!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 109.0
+margin_right = 413.0
+margin_bottom = 171.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Retry" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 124.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.184314, 0.462745, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0.341176, 1, 1 )
+text = "Retry"
+flat = true
+align = 0
+
+[node name="LevelSelect" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 164.0
+margin_right = 413.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.184314, 0.462745, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0.341176, 1, 1 )
+text = "Level Select"
+flat = true
+align = 0
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LevelSelect" to="." method="_on_LevelSelect_pressed"]

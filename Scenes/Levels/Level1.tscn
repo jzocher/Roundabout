@@ -1,0 +1,154 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/LevelImages/Level_easy.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TrafficCar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/WinScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Level1.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Slowlane.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/LoseScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Misc/arrow_yellow.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34.0748, 60.0685 )
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 1, 222, -1, -222, 870.732, 345.076, 0, 0, 0, 0, 648.732, 121.076, 0, -228, 0, 228, 426.732, 344.076, 0, 0, 0, 0, 651.732, 574.076, 0, 228, 0, -228, 870.732, 345.076 )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 190.304, 6.8129 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7.21465, 145.673 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="level" type="TextureRect" parent="."]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Finish" type="Area2D" parent="."]
+position = Vector2( 1235.73, 431.287 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Finish"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Finish"]
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 34.389, 397.737 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -6.73157, 12.924 )
+curve = SubResource( 2 )
+script = ExtResource( 6 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 870.732, 345.076 )
+rotation = -1.5828
+lookahead = 5.0
+
+[node name="TrafficCar" parent="Path2D/PathFollow2D" instance=ExtResource( 3 )]
+rotation = 1.5708
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 645.834, 121.078 )
+rotation = 3.1114
+offset = 355.693
+lookahead = 5.0
+
+[node name="TrafficCar" parent="Path2D/PathFollow2D2" instance=ExtResource( 3 )]
+rotation = 1.5708
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 426.756, 348.177 )
+rotation = 1.55138
+offset = 711.385
+lookahead = 5.0
+
+[node name="TrafficCar" parent="Path2D/PathFollow2D3" instance=ExtResource( 3 )]
+rotation = 1.5708
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 651.326, 574.037 )
+rotation = -0.0237515
+offset = 1067.08
+lookahead = 5.0
+
+[node name="TrafficCar" parent="Path2D/PathFollow2D4" instance=ExtResource( 3 )]
+rotation = 1.5708
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 185.011, 359.139 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
+shape = SubResource( 3 )
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1093.74, 360.499 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2( 60.7375, -14.5242 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D"]
+polygon = PoolVector2Array( -61.7127, 238.327, 349.827, 241.937, 398.562, 180.567, 461.737, 137.247, 530.327, 111.977, 614.26, 109.269, 685.557, 130.027, 748.733, 167.932, 808.297, 239.229, 1220.74, 239.229, 1218.94, 73.1693, -59.9077, 71.3643 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D2"]
+polygon = PoolVector2Array( 1.13985, 495.242, 411.859, 495.33, 449.532, 545.191, 508.258, 589.513, 581.388, 618.322, 643.438, 628.294, 709.92, 617.214, 783.05, 583.972, 838.452, 538.543, 869.477, 494.222, 1279.45, 495.33, 1279.45, 659.319, 1.88644, 658.211 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D3"]
+polygon = PoolVector2Array( 637.487, 261.609, 690.542, 275.212, 728.632, 313.303, 738.155, 362.276, 724.551, 412.61, 691.902, 446.62, 641.568, 460.223, 585.793, 445.259, 553.144, 411.25, 538.18, 360.916, 559.946, 301.059, 598.036, 272.492 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2( -9.52261, 359.139 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2( 0.814507, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2( 1297.31, 2.45547 )
+shape = SubResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinScreen" parent="." instance=ExtResource( 4 )]
+visible = false
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="LoseScreen" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+offset_h = -0.3
+[connection signal="body_entered" from="Finish" to="." method="_on_Finish_body_entered"]
